@@ -13,4 +13,6 @@ pip install currency_to_words
 from currency_to_words import convert_currency_to_words
 
 amount = 1234567.89
-print(convert_currency_to_words(amount))  # Output: One Lakh Twenty Three Thousand Four Hundred Sixty Seven Rupees and Eighty Nine Paise
+print(convert_currency_to_words(amount))
+
+# Output: One Lakh Twenty Three Thousand Four Hundred Sixty Seven Rupees and Eighty Nine Paise
