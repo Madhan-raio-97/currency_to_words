@@ -14,15 +14,13 @@ from currency_to_words import convert_currency_to_words
 
 amount = 1234567.89
 print(convert_currency_to_words(amount))  # Output: One Lakh Twenty Three Thousand Four Hundred Sixty Seven Rupees and Eighty Nine Paise
+```
 
-
-To handle **Sentence case**, **Alternating case**, **Upper Camel Case**, and **Lower Camel Case** in addition to the cases already discussed (uppercase, lowercase, title, and capitalize), we can add logic to transform the output string based on the `case_type` parameter.
-
-Here’s how you can implement the handling of these additional cases:
 
 ### Full Implementation with All Cases:
 
-### Explanation of the New Cases:
+Here’s how you can implement the handling of these additional cases:
+
 
 1. **Sentence case**:
    - This format capitalizes only the first letter of the first word of the sentence and makes all the other letters lowercase.
