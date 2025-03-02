@@ -23,13 +23,13 @@ def convert_currency_to_words(amount, case_type='title'):
 
         words = []
         if crore > 0:
-            words.append(convert_two_digits(crore) + " Crore")
+            words.append(convert_three_digits(crore) + " Crore")  # Use convert_three_digits for crore
         if lakh > 0:
-            words.append(convert_two_digits(lakh) + " Lakh")
+            words.append(convert_three_digits(lakh) + " Lakh")  # Use convert_three_digits for lakh
         if thousand > 0:
-            words.append(convert_two_digits(thousand) + " Thousand")
+            words.append(convert_three_digits(thousand) + " Thousand")  # Use convert_three_digits for thousand
         if hundred > 0:
-            words.append(convert_three_digits(hundred))
+            words.append(convert_three_digits(hundred))  # Use convert_three_digits for hundreds
 
         return ' '.join(words).strip()
 
@@ -46,21 +46,24 @@ def convert_currency_to_words(amount, case_type='title'):
 
     # Apply the case transformation based on the case_type parameter
     if case_type == 'uppercase':
-        result = result.upper()  # Convert all text to uppercase
+        result = result.upper()
     elif case_type == 'lowercase':
-        result = result.lower()  # Convert all text to lowercase
+        result = result.lower()
     elif case_type == 'title':
-        result = result.title()  # Capitalize the first letter of each word
+        result = result.title()
     elif case_type == 'capitalize':
-        result = result.capitalize()  # Capitalize the first letter of the first word
+        result = result.capitalize()
     elif case_type == 'sentence':
-        result = result[0].upper() + result[1:].lower()  # Sentence case (capitalize the first letter only)
+        result = result[0].upper() + result[1:].lower()
     elif case_type == 'alternating':
-        result = ''.join([char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(result)])  # Alternating case
+        result = ''.join([char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(result)])
     elif case_type == 'upper_camel':
-        result = ' '.join([word.capitalize() for word in result.split()])  # Upper Camel Case (Pascal Case)
+        result = ' '.join([word.capitalize() for word in result.split()])
     elif case_type == 'lower_camel':
         words = result.split()
-        result = words[0].lower() + ' '.join([word.capitalize() for word in words[1:]])  # Lower Camel Case
+        result = words[0].lower() + ' '.join([word.capitalize() for word in words[1:]])
 
     return result
+
+# Test with an example
+print(convert_currency_to_words(19992345678.90))  # Test with a larger value

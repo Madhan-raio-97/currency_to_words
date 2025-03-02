@@ -19,7 +19,7 @@ print(convert_currency_to_words(amount))  # Output: One Lakh Twenty Three Thousa
 
 ### Full Implementation with All Cases:
 
-Here’s how you can implement the handling of these additional cases:
+Here is how you can implement the handling of these additional cases:
 
 
 1. **Sentence case**:

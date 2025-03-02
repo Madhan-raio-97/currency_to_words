@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="currency_to_words",  # Name of your package
-    version="0.1.0",  # Version of your package
+    version="0.1.1",  # Version of your package
     packages=find_packages(),  # Automatically find all packages in the project
     description="A library to convert currency to words in Indian numbering system",
     long_description=open("README.md").read(),
