@@ -1,28 +1,9 @@
 # currency_to_words/__init__.py
 
-def convert_currency_to_words(amount):
-    """Convert a numeric amount to words (Indian numbering system)"""
-    units = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
-             "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
-    tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+from utils.methods import convert_two_digits, convert_three_digits
 
-    def convert_two_digits(n):
-        """Convert a number less than 100 to words"""
-        if n == 0:
-            return ""
-        elif n < 20:
-            return units[n]
-        else:
-            return tens[n // 10] + ('' if n % 10 == 0 else ' ' + units[n % 10])
-
-    def convert_three_digits(n):
-        """Convert a number less than 1000 to words"""
-        if n == 0:
-            return ""
-        elif n < 100:
-            return convert_two_digits(n)
-        else:
-            return units[n // 100] + " Hundred" + ('' if n % 100 == 0 else ' ' + convert_two_digits(n % 100))
+def convert_currency_to_words(amount, case_type='title'):
+    """Convert a numeric amount to words (Indian numbering system) with case handling"""
 
     def num_to_words(n):
         """Convert a number to words for Indian currency system"""
@@ -59,6 +40,27 @@ def convert_currency_to_words(amount):
 
     if paise > 0:
         paise_in_words = num_to_words(paise)
-        return f"{rupees_in_words} Rupees and {paise_in_words} Paise"
+        result = f"{rupees_in_words} Rupees and {paise_in_words} Paise"
     else:
-        return f"{rupees_in_words} Rupees"
+        result = f"{rupees_in_words} Rupees"
+
+    # Apply the case transformation based on the case_type parameter
+    if case_type == 'uppercase':
+        result = result.upper()  # Convert all text to uppercase
+    elif case_type == 'lowercase':
+        result = result.lower()  # Convert all text to lowercase
+    elif case_type == 'title':
+        result = result.title()  # Capitalize the first letter of each word
+    elif case_type == 'capitalize':
+        result = result.capitalize()  # Capitalize the first letter of the first word
+    elif case_type == 'sentence':
+        result = result[0].upper() + result[1:].lower()  # Sentence case (capitalize the first letter only)
+    elif case_type == 'alternating':
+        result = ''.join([char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(result)])  # Alternating case
+    elif case_type == 'upper_camel':
+        result = ' '.join([word.capitalize() for word in result.split()])  # Upper Camel Case (Pascal Case)
+    elif case_type == 'lower_camel':
+        words = result.split()
+        result = words[0].lower() + ' '.join([word.capitalize() for word in words[1:]])  # Lower Camel Case
+
+    return result
